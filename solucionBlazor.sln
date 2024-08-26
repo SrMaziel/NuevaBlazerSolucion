@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InformacionPublica.Server",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InformacionCrud.Shared", "InformacionCrud.Shared\InformacionCrud.Shared.csproj", "{0881D0B5-251A-488A-9CCF-67C1FB74175E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InformacionCrud.Cliente", "InformacionCrud.Cliente\InformacionCrud.Cliente.csproj", "{987E8E5F-F9B2-4EAB-ACB4-A2376DD34C53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InformacionCrud.Cliente", "InformacionCrud.Cliente\InformacionCrud.Cliente.csproj", "{987E8E5F-F9B2-4EAB-ACB4-A2376DD34C53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

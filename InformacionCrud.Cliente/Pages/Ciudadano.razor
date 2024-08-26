@@ -1,0 +1,87 @@
+﻿@page "/ciudadano"
+
+@using InformacionCrud.Shared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using InformacionCrud.Cliente.Services;
+
+@inject SweetAlertService Swal;
+@inject ICiudadanoService ciudadanoService;
+
+<h3>Ciudadano</h3>
+
+<a class="btn btn-success btn-sm mb-3 href="ciudadano>Nuevo Ciudadano</a>
+
+<table class="table">
+<thead>
+	<tr>
+		<th>Idciudadano</th>
+		<th>Nombre</th>
+		<th>Apellido</th>
+		<th>Fecha de nacimiento</th>
+		<th>Dui</th>
+		<th>Tipo de ciudadano</th>
+		<th>Nacionalidad</th>
+		<th>Tipo documento</th>
+		<th>Telefono fijo</th>
+		<th>Telefono movil</th>
+		<th>Correo electronico</th>
+		<th>Direccion ciudadano</th>
+		<th>Bienes</th>
+		<th>Estado</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+
+		@if(listaCiudadano == null)
+		{
+			
+			<tr>
+				<td colspan="15"align="center">
+					<img style="width:50px" src="https://www.google.com/search?q=gifs+de+cargando+dark+retro&sca_esv=de2111f507d80062&sca_upv=1&rlz=1C1VDKB_enSV1116SV1116&udm=2&biw=1280&bih=632&ei=_c7LZqO3FvaVwbkPlof7kA8&ved=0ahUKEwjjqab5tZGIAxX2SjABHZbDHvIQ4dUDCBA&uact=5&oq=gifs+de+cargando+dark+retro&gs_lp=Egxnd3Mtd2l6LXNlcnAiG2dpZnMgZGUgY2FyZ2FuZG8gZGFyayByZXRyb0j_ggtQvxVY8vsKcAJ4AJABAJgBbKAB1ASqAQMyLjS4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB44C&sclient=gws-wiz-serp#vhid=7TOz_rWIf2uVLM&vssid=mosaic" />
+
+				</td>
+			</tr>
+		}
+
+
+
+
+
+</tbody>
+</table>
+
+
+
+@code {
+
+	List<CiudadanoDTO>? listaCiudadano = null;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		listaCiudadano = await ciudadanoService.Lista();
+	}
+
+	private async Task Eliminar(int id)
+	{
+		var resultado = await Swal.FireAsync(new SweetAlertOptions
+		{
+         Title = "Eliminar Ciudadano",
+		 Text = "Deseas eliminar el ciudadano?",
+		 Icon = SweetAlertIcon.Question,
+		 ShowCancelButton = true
+		});
+		if (resultado.IsConfirmed)
+		{
+			var eliminado = await ciudadanoService.Eliminar(id);
+
+			if (eliminado)
+				listaCiudadano = listaCiudadano!.FindAll(C => C.Idciudadano != id);
+		}
+
+	}
+	
+	
+
+}
