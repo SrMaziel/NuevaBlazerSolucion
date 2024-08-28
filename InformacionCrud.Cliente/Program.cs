@@ -26,7 +26,14 @@ builder.Services.AddScoped<ICiudadanoService, CiudadanoService>();
 
 builder.Services.AddScoped<iBienesService, BienesService>();
 builder.Services.AddScoped<ICiudadanoService, CiudadanoService>();
-
 builder.Services.AddSweetAlert2();
+
+
+
+builder.Services.AddScoped<IDenunciaService, DenunciaService>();
+builder.Services.AddSweetAlert2();
+
+
+
 
 await builder.Build().RunAsync();

@@ -111,7 +111,7 @@ namespace InformacionPublica.Server.Controllers
             try
             {
 
-                var dbCiudadano = await _dbContext.Ciudadanos.FirstOrDefaultAsync(x => x.Idciudadano == id);
+                var dbCiudadano = await _dbContext.Ciudadanos.FirstOrDefaultAsync(c => c.Idciudadano == id);
 
                 if (dbCiudadano != null)
                 {

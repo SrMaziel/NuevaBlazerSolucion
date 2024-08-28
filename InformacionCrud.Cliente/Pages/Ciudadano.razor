@@ -9,12 +9,12 @@
 
 <h3>Ciudadano</h3>
 
-<a class="btn btn-success btn-sm mb-3 href="ciudadano>Nuevo Ciudadano</a>
+<a class="btn btn-success btn-sm mb-3" href="ciudadano">Nuevo Ciudadano</a>
 
 <table class="table">
 <thead>
 	<tr>
-		<th>Idciudadano</th>
+			<th>Idciudadano</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
 		<th>Fecha de nacimiento</th>
@@ -26,8 +26,7 @@
 		<th>Telefono movil</th>
 		<th>Correo electronico</th>
 		<th>Direccion ciudadano</th>
-		<th>Bienes</th>
-		<th>Estado</th>
+		<th>Bienes</th>		
 		<th></th>
 	</tr>
 </thead>
@@ -35,13 +34,46 @@
 
 		@if(listaCiudadano == null)
 		{
-			
+
 			<tr>
 				<td colspan="15"align="center">
-					<img style="width:50px" src="https://www.google.com/search?q=gifs+de+cargando+dark+retro&sca_esv=de2111f507d80062&sca_upv=1&rlz=1C1VDKB_enSV1116SV1116&udm=2&biw=1280&bih=632&ei=_c7LZqO3FvaVwbkPlof7kA8&ved=0ahUKEwjjqab5tZGIAxX2SjABHZbDHvIQ4dUDCBA&uact=5&oq=gifs+de+cargando+dark+retro&gs_lp=Egxnd3Mtd2l6LXNlcnAiG2dpZnMgZGUgY2FyZ2FuZG8gZGFyayByZXRyb0j_ggtQvxVY8vsKcAJ4AJABAJgBbKAB1ASqAQMyLjS4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB44C&sclient=gws-wiz-serp#vhid=7TOz_rWIf2uVLM&vssid=mosaic" />
+					<img style="width:50px" src="https://www.google.com/search?q=Gif+de+cargando+dark&sca_esv=b3631baa3837d75b&rlz=1C1UUXU_esSV973SV973&udm=2&biw=1293&bih=575&sxsrf=ADLYWILOkxstFmdUFrEqRJVLsIFfpyra3A%3A1724686216021&ei=iJ_MZpZzi5TBuQ-njs7xCg&ved=0ahUKEwiW14Tq_JKIAxULSjABHSeHM64Q4dUDCBA&uact=5&oq=Gif+de+cargando+dark&gs_lp=Egxnd3Mtd2l6LXNlcnAiFEdpZiBkZSBjYXJnYW5kbyBkYXJrSNJMUMkCWNpJcAJ4AJABAJgBkgWgAd8lqgELMC44LjcuMi4wLjK4AQPIAQD4AQGYAhCgAqUfwgIFEAAYgATCAgQQIxgnwgIGEAAYBRgemAMAiAYBkgcLMi42LjUuMS4xLjGgB9FT&sclient=gws-wiz-serp#vhid=pp66-fG5RriqZM&vssid=mosaic" />
+" />
 
 				</td>
 			</tr>
+
+		}
+		else
+		{
+			@foreach(var item in listaCiudadano)
+			{
+				<tr>
+					<td>@item.Idciudadano</td>
+					<td>@item.Nombre</td>
+					<td>@item.Apellido</td>
+					<td>@item.Fechanacimiento.("dd/MM/yyyy")</td>
+					<td>@item.Dui</td>
+					<td>@item.Tiposciudadanos!.</td>
+					<td>@item.Nacionalidad</td>
+					<td>@item.Tipodedocumento</td>
+					<td>@item.Telefonofijio</td>
+					<td>@item.Telefonomovil</td>
+					<td>@item.Correoelectronico</td>
+					<td>@item.Direccionciudadano</td>
+					<td>@item.Bienes</td>
+					
+					<td>
+						<a class="btn btn-primary btn-sm"href="ciudadano/@item.Idciudadano">
+							<i class="oi oi-pencil"></i>
+							</a>
+							<button type="button" class="btn btn-danger btn-sm ms-2" @onclick="(() => Eliminar(item.Idciudadano))">
+							<i class="oi oi-trash"></i>
+							</button>
+
+					</td>
+				</tr>
+			}
 		}
 
 
@@ -77,7 +109,7 @@
 			var eliminado = await ciudadanoService.Eliminar(id);
 
 			if (eliminado)
-				listaCiudadano = listaCiudadano!.FindAll(C => C.Idciudadano != id);
+				listaCiudadano = listaCiudadano!.FindAll(c => c.Idciudadano != id);
 		}
 
 	}
